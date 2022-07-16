@@ -1,7 +1,6 @@
 package com.xerox.friends;
 
 import com.xerox.friends.controllers.FriendController;
-import com.xerox.friends.services.FriendService;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +14,6 @@ class FriendsApplicationTests {
 
 	@Autowired
 	FriendController friendController;
-
 
 	@Test
 	void contextLoads() {

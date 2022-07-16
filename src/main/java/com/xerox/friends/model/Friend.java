@@ -1,25 +1,20 @@
 package com.xerox.friends.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
 public class Friend {
-    int age;
-    @JsonIgnore
-    boolean married;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @NotNull
+    @NotNull(message = "First name must not be null")
     private String firstName;
+    @NotNull(message = "Last name must not be null")
     private String lastName;
-
     @OneToMany(cascade = CascadeType.ALL)
     private List<Address> addresses;
 
@@ -27,7 +22,6 @@ public class Friend {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
 
     public Friend() {
     }
@@ -38,22 +32,6 @@ public class Friend {
 
     public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public boolean isMarried() {
-        return married;
-    }
-
-    public void setMarried(boolean married) {
-        this.married = married;
     }
 
     public String getFirstName() {

@@ -1,7 +1,8 @@
-package com.xerox.friends.controllers;
+package com.xerox.friends.controllers.exceptionHandlers;
 
 import com.xerox.friends.utils.ErrorMessage;
 import com.xerox.friends.utils.FieldErrorMessage;
+import com.xerox.friends.utils.FriendNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -18,11 +19,11 @@ import java.util.stream.Collectors;
 public class ControllerExceptionHandler {
 
     @ResponseBody
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(ValidationException.class)
-    ErrorMessage exceptionHandler(ValidationException e)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(FriendNotFoundException.class)
+    ErrorMessage exceptionHandler(FriendNotFoundException e)
     {
-        return new ErrorMessage("400", e.getMessage());
+        return new ErrorMessage("404", e.getMessage());
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
